@@ -76,6 +76,25 @@ function NationalParks() {
 
                 </div>
                     <Body />
+                    {parksResults.map((parks) => {
+                        return (
+                            <>
+                                <div className="activity-name" id="activity-name">{parks.id}</div>
+                                {/* <div className="activity-distance" id="activity-distance">{data.distance}</div>
+                    <div className="averageSpeed" id="averageSpeed">{data.average_speed}</div>
+                    <div className="totalTime" id="totalTime">{data.elapsed_time}</div>
+                    <div className="elevationGain" id="elevationGain">{data.total_elevation_gain}</div> */}
+
+
+
+                            </>
+                        )
+
+
+
+
+                    })}
+                    <div>
                     {parksResults.map((data) => {
                         return (
                             <>
@@ -94,6 +113,8 @@ function NationalParks() {
 
 
                     })}
+                    </div>
+                    
 
                 </div>
             </div>
