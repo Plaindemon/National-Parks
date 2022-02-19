@@ -56,14 +56,14 @@ function NationalParks() {
             // .catch(error => console.log('error', error));
 
         }
-        getOptionsInfo(
-            setParks(parks),
+        getOptionsInfo()
+        setParks(parks)
             // setWeatherInfo(weatherInfo),
             // setDirectionsInfo(directionsInfo),
             // setDirectionsUrl(directionsUrl)
 
 
-        )
+        
 
     }
     return (
@@ -73,7 +73,7 @@ function NationalParks() {
                 <div className="panel-block">
                     <div className="control">
                         <input id="input-state" className="input" type="text" placeholder="Search using state acronym"></input>
-                        <button id="search-city-btn" className="button" onClick={getOptionsInfo()}>Search</button>
+                        <button id="search-city-btn" className="button" onClick={parks}>Search</button>
                         <p className="btn">Click links added to each result for more info from the National Parks Website</p>
                     </div>
 
