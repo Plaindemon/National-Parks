@@ -12,6 +12,7 @@ function NationalParks() {
     var searchCityBtn = document.querySelector("#search-city-btn");
     var inputContainerEl = document.querySelector("#input-container");
     var inputSearchName = document.querySelector("#input-state");
+   console.log(inputSearchName)
     // code using nps.gov API - use to get info from about places near the location desired 
     var requestOptions = {
         method: 'GET',
@@ -26,11 +27,11 @@ function NationalParks() {
 
 
     // fetch a response from nps 
-    let queryURL = fetch("https://developer.nps.gov/api/v1/parks?stateCode=" + inputSearchName.value + "&api_key=" + apiKeyNps + "&fields=description,fullName,url,activities,latitude,longitude,directionsInfo,addresses,weatherInfo,name,directionsUrl,operatingHours", requestOptions)
+    let queryURL = fetch("https://developer.nps.gov/api/v1/parks?stateCode=" + inputSearchName + "&api_key=" + apiKeyNps + "&fields=description,fullName,url,activities,latitude,longitude,directionsInfo,addresses,weatherInfo,name,directionsUrl,operatingHours", requestOptions)
     console.log(queryURL)
 
     var activitySearchBtn = document.querySelector("#activities-btn");
-    function handleClick(activitySearchBtn) {
+    // function handleClick(activitySearchBtn) {
 
         function getOptionsInfo(res) {
             queryURL
@@ -57,7 +58,7 @@ function NationalParks() {
 
         }
         getOptionsInfo()
-        setParks(parks)
+        // setParks(parks)
             // setWeatherInfo(weatherInfo),
             // setDirectionsInfo(directionsInfo),
             // setDirectionsUrl(directionsUrl)
@@ -65,7 +66,7 @@ function NationalParks() {
 
         
 
-    }
+    // }
     return (
         <div>
             <div className="app-activities">
@@ -73,7 +74,7 @@ function NationalParks() {
                 <div className="panel-block">
                     <div className="control">
                         <input id="input-state" className="input" type="text" placeholder="Search using state acronym"></input>
-                        <button id="search-city-btn" className="button" onClick={parks}>Search</button>
+                        <button id="search-city-btn" className="button" onClick={e => setParks(e.target.value)}>Search</button>
                         <p className="btn">Click links added to each result for more info from the National Parks Website</p>
                     </div>
 
