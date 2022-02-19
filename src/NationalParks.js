@@ -20,10 +20,10 @@ function NationalParks() {
     };
 
     const apiKeyNps = "4fxi1Pok4kgde26ywgQnyEaaxknpMlmKw3svW5lP";
-    var [parks, setParks] = useState([]);
-    var [weatherInfo, setWeatherInfo] = useState([]);
-    var [directionsInfo, setDirectionsInfo] = useState([]);
-    var [directionsUrl, setDirectionsUrl] = useState([]);
+    var [parksResults, setParks] = useState([]);
+    // var [weatherInfo, setWeatherInfo] = useState([]);
+    // var [directionsInfo, setDirectionsInfo] = useState([]);
+    // var [directionsUrl, setDirectionsUrl] = useState([]);
 
 
     // fetch a response from nps 
@@ -42,13 +42,8 @@ function NationalParks() {
                     console.log(result);
                     console.log(result.data.length)
                     for (let i = 0; i < result.data.length; i++) {
-                        parks = result.data[i];
-                        console.log(parks)
-                        weatherInfo = result.data[i];
-
-                        directionsInfo = result.data[i];
-
-                        directionsUrl = result.data[i];
+                        parksResults = result.data[i];
+                        console.log(parksResults)
 
                     }
 
@@ -81,7 +76,7 @@ function NationalParks() {
 
                 </div>
                     <Body />
-                    {parks.map((data) => {
+                    {parksResults.map((data) => {
                         return (
                             <>
                                 <div className="activity-name" id="activity-name">{data.weatherInfo}</div>
