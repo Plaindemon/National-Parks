@@ -20,10 +20,10 @@ function NationalParks() {
     };
 
     const apiKeyNps = "4fxi1Pok4kgde26ywgQnyEaaxknpMlmKw3svW5lP";
-    const [parks, setParks] = useState([]);
-    const [weatherInfo, setWeatherInfo] = useState([]);
-    const [directionsInfo, setDirectionsInfo] = useState([]);
-    const [directionsUrl, setDirectionsUrl] = useState([]);
+    var [parks, setParks] = useState([]);
+    var [weatherInfo, setWeatherInfo] = useState([]);
+    var [directionsInfo, setDirectionsInfo] = useState([]);
+    var [directionsUrl, setDirectionsUrl] = useState([]);
 
 
     // fetch a response from nps 
@@ -39,7 +39,8 @@ function NationalParks() {
                     return res.json();
                 })
                 .then(result => {
-                    console.log(result.data[0]);
+                    console.log(result);
+                    console.log(result.data.length)
                     for (let i = 0; i < result.data.length; i++) {
                         parks = result.data[i];
                         console.log(parks)
