@@ -6,13 +6,14 @@ import Body from './Body'
 
 
 
-function NationalParks() {
+function NationalParks(props) {
     var directionsInfoBtn = document.querySelector('#directions-btn')
     var weatherInfoBtn = document.querySelector('#weather-info-btn')
     var searchCityBtn = document.querySelector("#search-city-btn");
     var inputContainerEl = document.querySelector("#input-container");
-    var inputSearchName = document.querySelector("#input-state");
-   console.log(inputSearchName)
+    const [inputSearchName, setInputSearchName] = useState("");
+    // var inputSearchName = document.querySelector("#input-state");
+    console.log(inputSearchName)
     // code using nps.gov API - use to get info from about places near the location desired 
     var requestOptions = {
         method: 'GET',
@@ -33,94 +34,90 @@ function NationalParks() {
     var activitySearchBtn = document.querySelector("#activities-btn");
     // function handleClick(activitySearchBtn) {
 
-        function getOptionsInfo(res) {
-            queryURL
-                .then((res) => {
-                    return res.json();
-                })
-                .then(result => {
-                    console.log(result);
-                    console.log(result.data.length)
-                    for (let i = 0; i < result.data.length; i++) {
-                        parksResults = result.data[i];
-                        console.log(parksResults)
+    function getOptionsInfo(res) {
+        queryURL
+            .then((res) => {
+                return res.json();
+            })
+            .then(result => {
+                console.log(result);
 
-                    }
+                // setParks(result)
+                // console.log(setParks)
+            })
+        // .catch(error => console.log('error', error));
 
+    }
+    // getOptionsInfo()
+    // setParks(parks)
+    // setWeatherInfo(weatherInfo),
+    // setDirectionsInfo(directionsInfo),
+    // setDirectionsUrl(directionsUrl)
 
+    // function ListActivity(props) {
+    //     const parks = props.parks;
+    //     const parkList = <div id="input-container" className="panel-block">
 
-                })
-            // .catch(error => console.log('error', error));
-
-        }
-        getOptionsInfo()
-        // setParks(parks)
-            // setWeatherInfo(weatherInfo),
-            // setDirectionsInfo(directionsInfo),
-            // setDirectionsUrl(directionsUrl)
-
-
-        
-
+    //     </div>
     // }
+
+    
+
     return (
         <div>
             <div className="app-activities">
                 <div className="app-activities">
-                <div className="panel-block">
-                    <div className="control">
-                        <input id="input-state" className="input" type="text" placeholder="Search using state acronym"></input>
-                        <button id="search-city-btn" className="button" onClick={e => setParks(e.target.value)}>Search</button>
-                        <p className="btn">Click links added to each result for more info from the National Parks Website</p>
-                    </div>
+                    <div className="panel-block">
+                        <form className="control">
+                            <input
+                                id="input-state"
+                                value={inputSearchName}
+                                className="input"
+                                type="text"
+                                placeholder="Search using state acronym"
+                                onChange={(e) => setInputSearchName(e.target.value)}
+                                
+                            >
+                                {/* <button id="search-city-btn" className="button" onClick={(e) => setInputSearchName(e.target.value)}>Search</button> */}
+                            </input>
 
-                </div>
+                            <p className="btn">Click links added to each result for more info from the National Parks Website</p>
+                        </form>
+
+                    </div>
                     <Body />
-                    {parksResults.map((parks) => {
-                        return (
-                            <>
-                                <div className="activity-name" id="activity-name">{parks.id}</div>
-                                {/* <div className="activity-distance" id="activity-distance">{data.distance}</div>
-                    <div className="averageSpeed" id="averageSpeed">{data.average_speed}</div>
-                    <div className="totalTime" id="totalTime">{data.elapsed_time}</div>
-                    <div className="elevationGain" id="elevationGain">{data.total_elevation_gain}</div> */}
+                    <div id="input-container" className="panel-block">
+                        <div>
+                            Nearby Parks:
+                            <div>
+                                {parksResults.map((parks) => {
+                                    <>
+                                        <li key={parks.id}>{parks.name}</li>
+                                        <li key={parks.description}>{parks.description}</li>
+                                    </>
 
-
-
-                            </>
-                        )
-
-
-
-
-                    })}
-                    <div>
-                    {parksResults.map((data) => {
-                        return (
-                            <>
-                                <div className="activity-name" id="activity-name">{data.weatherInfo}</div>
-                                {/* <div className="activity-distance" id="activity-distance">{data.distance}</div>
-                    <div className="averageSpeed" id="averageSpeed">{data.average_speed}</div>
-                    <div className="totalTime" id="totalTime">{data.elapsed_time}</div>
-                    <div className="elevationGain" id="elevationGain">{data.total_elevation_gain}</div> */}
-
-
-
-                            </>
-                        )
-
-
-
-
-                    })}
+                                })}
+                            </div>
+                        </div>
                     </div>
-                    
+                    <div>
+
+
+
+
+
+
+
+                    </div>
+
 
                 </div>
             </div>
-        </div>
 
-        // <button onClick={() => setParks()}
+            {/* 
+        <button onClick={() => setParks()}>Search</button> */}
+
+        </div>
     )
 }
 

@@ -18,9 +18,7 @@ function Body() {
                     <a id="weather-info-btn" className="button btn">Weather Info</a>
                 </p>
 
-                <div id="input-container" className="panel-block">
-
-                </div>
+                
 
 
             </nav >
