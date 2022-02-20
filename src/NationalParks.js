@@ -29,7 +29,7 @@ function NationalParks(props) {
 
     // fetch a response from nps 
     let queryURL = fetch("https://developer.nps.gov/api/v1/parks?stateCode=" + inputSearchName + "&api_key=" + apiKeyNps + "&fields=description,fullName,url,activities,latitude,longitude,directionsInfo,addresses,weatherInfo,name,directionsUrl,operatingHours", requestOptions)
-    console.log(queryURL)
+    // console.log(queryURL)
 
     var activitySearchBtn = document.querySelector("#activities-btn");
     // function handleClick(activitySearchBtn) {
@@ -42,17 +42,21 @@ function NationalParks(props) {
             .then(result => {
                 console.log(result);
 
-                // setParks(result)
+                setParks(result.data)
                 // console.log(setParks)
             })
         // .catch(error => console.log('error', error));
 
     }
-    // getOptionsInfo()
-    // setParks(parks)
-    // setWeatherInfo(weatherInfo),
-    // setDirectionsInfo(directionsInfo),
-    // setDirectionsUrl(directionsUrl)
+
+
+    function handleClick(e) {
+        e.preventDefault();
+        // parksResults = result.data;
+        console.log('The link was clicked.');
+        getOptionsInfo(parksResults)
+        console.log(parksResults)
+    }
 
     // function ListActivity(props) {
     //     const parks = props.parks;
@@ -61,7 +65,7 @@ function NationalParks(props) {
     //     </div>
     // }
 
-    
+
 
     return (
         <div>
@@ -76,28 +80,31 @@ function NationalParks(props) {
                                 type="text"
                                 placeholder="Search using state acronym"
                                 onChange={(e) => setInputSearchName(e.target.value)}
-                                
-                            >
-                                {/* <button id="search-city-btn" className="button" onClick={(e) => setInputSearchName(e.target.value)}>Search</button> */}
-                            </input>
 
+                            >
+
+                            </input>
+                            <button id="search-city-btn" className="button" onClick={handleClick}>Search</button>
                             <p className="btn">Click links added to each result for more info from the National Parks Website</p>
                         </form>
 
                     </div>
                     <Body />
-                    <div id="input-container" className="panel-block">
-                        <div>
-                            Nearby Parks:
-                            <div>
-                                {parksResults.map((parks) => {
-                                    <>
-                                        <li key={parks.id}>{parks.name}</li>
-                                        <li key={parks.description}>{parks.description}</li>
-                                    </>
+        <div id="input-container" className="panel-block">
+            <div>
+                Nearby Parks:
+                <ul>
+                {parksResults.map((parks) => {
+                    return (
+                        <>
+                            <li key={parks.id}>{parks.name}</li>
+                            <li key={parks.description}>{parks.description}</li>
+                            <li key={parks.weatherInfo}>☀️Weather{parks.weatherInfo}☀️</li>
 
+                        </>
+                                    )
                                 })}
-                            </div>
+                            </ul>
                         </div>
                     </div>
                     <div>
